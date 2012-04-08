@@ -1,0 +1,1389 @@
+00 /r               ADD r/m8, r8
+01 /r               ADD r/m32, r32
+02 /r               ADD r8, r/m8
+03 /r               ADD r32, r/m32
+04 ib               ADD AL, imm8
+05 id               ADD EAX, imm32
+06                  PUSH ES
+07                  POP ES
+08 /r               OR r/m8, r8
+09 /r               OR r/m32, r32
+0A /r               OR r8, r/m8
+0B /r               OR r32, r/m32
+0C ib               OR AL, imm8
+0D id               OR EAX, imm32
+0E                  PUSH CS
+0F 00 /0            SLDT r32
+0F 00 /1            STR r/m16
+0F 00 /2            LLDT r/m16
+0F 00 /3            LTR r/m16
+0F 00 /4            VERR r/m16r/m16
+0F 00 /5            VERW r/m16r/m16
+0F 01 /0            SGDT m
+0F 01 /1            SIDT m
+0F 01 /2            LGDT
+0F 01 /3            LIDT
+0F 01 /4            SMSW r/m16
+0F 01 /6            LMSW r/m16
+0F 01 /7            INVLPG m
+0F 02 /r            LAR r32, r/m32
+0F 03 /r            LSL r32, r/m32
+0F 06               CLTSC
+0F 08               INVD
+0F 09               WBINVD
+0F 0B               UD2
+0F 10 /r            MOVUPS xmm1,
+0F 11 /r            MOVUPS xmm2/m128,
+0F 12 /r            MOVLPS xmm, m64
+0F 13 /r            MOVLPS m64, xmm
+0F 14 /r            UNPCKLPS xmm1,
+0F 15 /r            UNPCKHPS xmm1,
+0F 16 /r            MOVHPS xmm, m64
+0F 17 /r            MOVHPS m64, xmm
+0F 18 /0            PREFETCHNTA m8
+0F 18 /1            PREFETCHT0 m8
+0F 18 /2            PREFETCHT1 m8
+0F 18 /3            PREFETCHT2 m8
+0F 20 /r            MOV r32, CR0
+0F 21 /r            MOV r32, DR0-DR7
+0F 22 /r            MOV CR0, r32
+0F 23 /r            MOV DR0-DR7, r32
+0F 28 /r            MOVAPS xmm1,
+0F 29 /r            MOVAPS xmm2/m128,
+0F 2A /r            CVTPI2PS xmm, mm/m64
+0F 2B /r            MOVNTPS m128, xmm
+0F 2C /r            CVTTPS2PI mm,
+0F 2D /r            CVTPS2PI mm, xmm/m64
+0F 2E /r            UCOMISS xmm1, xmm2/m32
+0F 2F /r            COMISS xmm1, xmm2/m32
+0F 30               WRMSR
+0F 31               RDTSC
+0F 32               RDMSR
+0F 33               RDPMC
+0F 34               SYSENTER
+0F 35               SYSEXIT
+0F 40 /r            CMOVO r32, r/m32
+0F 41 /r            CMOVNO r32, r/m32
+0F 42 /r            CMOVB r32, r/m32
+0F 42 /r            CMOVC r32, r/m32
+0F 42 /r            CMOVNAE r32, r/m32
+0F 43 /r            CMOVAE r32, r/m32
+0F 43 /r            CMOVNB r32, r/m32
+0F 43 /r            CMOVNC r32, r/m32
+0F 44 /r            CMOVE r32, r/m32
+0F 44 /r            CMOVZ r32, r/m32
+0F 45 /r            CMOVNE r32, r/m32
+0F 45 /r            CMOVNZ r32, r/m32
+0F 46 /r            CMOVBE r32, r/m32
+0F 46 /r            CMOVNA r32, r/m32
+0F 47 /r            CMOVA r32, r/m32
+0F 47 /r            CMOVNBE r32, r/m32
+0F 48 /r            CMOVS r32, r/m32
+0F 49 /r            CMOVNS r32, r/m32
+0F 4A /r            CMOVP r32, r/m32
+0F 4A /r            CMOVPE r32, r/m32
+0F 4B /r            CMOVNP r32, r/m32
+0F 4B /r            CMOVPO r32, r/m32
+0F 4C /r            CMOVL r32, r/m32
+0F 4C /r            CMOVNGE r32, r/m32
+0F 4D /r            CMOVGE r32, r/m32
+0F 4D /r            CMOVNL r32, r/m32
+0F 4E /r            CMOVLE r32, r/m32
+0F 4E /r            CMOVNG r32, r/m32
+0F 4F /r            CMOVG r32, r/m32
+0F 4F /r            CMOVNLE r32, r/m32
+0F 50 /r            MOVMSKPS r32,
+0F 51 /r            SQRTPS xmm1, xmm2/m128
+0F 52 /r            RSQRTPS xmm1,
+0F 53 /r            RCPPS xmm1, xmm2/m128
+0F 54 /r            ANDPS xmm1, xmm2/m128
+0F 55 /r            ANDNPS xmm1, xmm2/m128
+0F 56 /r            ORPS xmm1, xmm2/m128
+0F 57 /r            XORPS xmm1, xmm2/m128
+0F 58 /r            ADDPS xmm1,
+0F 59 /r            MULPS xmm1,
+0F 5A /r            CVTPS2PD xmm1,
+0F 5B /r            CVTDQ2PS xmm1,
+0F 5C /r            SUBPS xmm1, xmm2/m128
+0F 5D /r            MINPS xmm1,
+0F 5E /r            DIVPS xmm1, xmm2/m128
+0F 5F /r            MAXPS xmm1,
+0F 60 /r            PUNPCKLBW mm,
+0F 61 /r            PUNPCKLWD mm,
+0F 62 /r            PUNPCKLDQ mm,
+0F 63 /r            PACKSSWB mm1,
+0F 64 /r            PCMPGTB mm, mm/m64
+0F 65 /r            PCMPGTW mm, mm/m64
+0F 66 /r            PCMPGTD mm, mm/m64
+0F 67 /r            PACKUSWB mm,
+0F 68 /r            PUNPCKHBW mm,
+0F 69 /r            PUNPCKHWD mm,
+0F 6A /r            PUNPCKHDQ mm,
+0F 6B /r            PACKSSDW mm1,
+0F 6E /r            MOVD mm, r/m32
+0F 6F /r            MOVQ mm, mm/m64
+0F 70 /r ib         PSHUFW mm1,
+0F 71 /2 ib         PSRLW mm, imm8
+0F 71 /4 ib         PSRAW mm, imm8
+0F 71 /6 ib         PSLLW mm, imm8
+0F 72 /2 ib         PSRLD mm, imm8
+0F 72 /4 ib         PSRAD mm, imm8
+0F 72 /6 ib         PSLLD mm, imm8
+0F 73 /2 ib         PSRLQ mm, imm8
+0F 73 /6 ib         PSLLQ mm, imm8
+0F 74 /r            PCMPEQB mm, mm/m64
+0F 75 /r            PCMPEQW mm, mm/m64
+0F 76 /r            PCMPEQD mm, mm/m64
+0F 77               EMMS
+ 0F 78 /r            VMREAD
+ 0F 79 /r            VMWRITE
+0F 7E /r            MOVD r/m32, mm
+0F 7F /r            MOVQ mm/m64, mm
+0F 80 cd            JO rel16/32
+0F 81 cd            JNO rel16/32
+0F 82 cd            JB rel16/32
+0F 82 cd            JC rel16/32
+0F 82 cd            JNAE rel16/32
+0F 83 cd            JAE rel16/32
+0F 83 cd            JNB rel16/32
+0F 83 cd            JNC rel16/32
+0F 84 cd            JE rel16/32
+0F 84 cd            JZ rel16/320
+0F 84 cd            JZ rel16/32
+0F 85 cd            JNE rel16/32
+0F 85 cd            JNZ rel16/32
+0F 86 cd            JBE rel16/32
+0F 86 cd            JNA rel16/32
+0F 87 cd            JA rel16/32
+0F 88 cd            JS rel16/32
+0F 89 cd            JNS rel16/32
+0F 8A cd            JP rel16/32
+0F 8A cd            JPE rel16/32
+0F 8B cd            JNP rel16/32
+0F 8B cd            JPO rel16/32
+0F 8C cd            JL rel16/32
+0F 8C cd            JNGE rel16/32
+0F 8D cd            JGE rel16/32
+0F 8D cd            JNL rel16/32
+0F 8E cd            JLE rel16/32
+0F 8E cd            JNG rel16/32
+0F 8F cd            JG rel16/32
+0F 8F cd            JNLE rel16/32
+0F 90 /r            SETO r/m8
+0F 91 /r            SETNO r/m8
+0F 92 /r            SETB r/m8
+0F 92 /r            SETC r/m8
+0F 92 /r            SETNAE r/m8
+0F 93 /r            SETAE r/m8
+0F 93 /r            SETNB r/m8
+0F 93 /r            SETNC r/m8
+0F 94 /r            SETE r/m8
+0F 94 /r            SETZ r/m8
+0F 95 /r            SETNE r/m8
+0F 95 /r            SETNZ r/m8
+0F 96 /r            SETBE r/m8
+0F 96 /r            SETNA r/m8
+0F 97 /r            SETA r/m8
+0F 97 /r            SETNBE r/m8
+0F 98 /r            SETS r/m8
+0F 99 /r            SETNS r/m8
+0F 9A /r            SETP r/m8
+0F 9A /r            SETPE r/m8
+0F 9B /r            SETNP r/m8
+0F 9B /r            SETPO r/m8
+0F 9C /r            SETL r/m8
+0F 9C /r            SETNGE r/m8
+0F 9D /r            SETGE r/m8
+0F 9D /r            SETNL r/m8
+0F 9E /r            SETLE r/m8
+0F 9E /r            SETNG r/m8
+0F 9F /r            SETG r/m8
+0F 9F /r            SETNLE r/m8
+0F A0               PUSH FS
+0F A1               POP FS
+0F A2               CPUID
+0F A3 /r            BT r/m32, r32
+0F A4 /r imm8       SHLD r/m32, r32, imm8
+0F A5 /r            SHLD r/m32, r32, CL
+0F A6 /r            XBTS
+0F A7 /r            IBTS
+0F A8               PUSH GS
+0F A9               POP GS
+0F AA               RSM
+0F AB /r            BTS r/m32, r32
+0F AC /r imm8       SHRD r/m32, r32, imm8
+0F AD /r            SHRD r/m32, r32, CL
+0F AE /0            FXSAVE m512byte
+0F AE /1            FXRSTOR m512byte
+0F AE /2            LDMXCSR m32
+0F AE /3            STMXCSR m32
+0F AE /5            LFENCE
+0F AE /6            MFENCE
+0F AE /7            CLFLUSH m8
+0F AE /7            SFENCE
+0F AF /r            IMUL r32, r/m32
+0F B0 /r            CMPXCHG r/m8, r8
+0F B1 /r            CMPXCHG r/m32, r32
+0F B2 /r            LSS r32, m16:32
+0F B3 /r            BTR r/m32, r32
+0F B4 /r            LFS r32, m16:32
+0F B5 /r            LGS r32, m16:32
+0F B6 /r            MOVZX r32, r/m
+0F B7 /r            MOVZX r32, r/m
+0F BA /4 ib         BT r/m32, imm8
+0F BA /5 ib         BTS r/m32, imm8
+0F BA /6 ib         BTR r/m32, imm8
+0F BA /7 ib         BTC r/m32, imm8
+0F BB /r            BTC r/m32, r32
+0F BC /r            BSF r32, r/m32
+0F BD /r            BSR r32, r/m32
+0F BE /r            MOVSX r16, r/m8
+0F BE /r            MOVSX r32, r/m8
+0F BF /r            MOVSX r32, r/m16
+0F C0 /r            XADD r/m8, r8
+0F C1 /r            XADD r/m32, r32
+0F C2 /r ib         CMPPS xmm1,
+0F C3 /r            MOVNTI m32, r32
+0F C4 /r ib         PINSRW mm, r32/m16, imm8
+0F C5 /r ib         PEXTRW r32, mm, imm8
+0F C6 /r ib         SHUFPS xmm1,
+0F C7 /1            CMPXCHG8B m64
+0F C8               BSWAP r32
+0F C9               BSWAP r32
+0F CA               BSWAP r32
+0F CB               BSWAP r32
+0F CC               BSWAP r32
+0F CD               BSWAP r32
+0F CE               BSWAP r32
+0F CF               BSWAP r32
+0F D1 /r            PSRLW mm, mm/m64
+0F D2 /r            PSRLD mm, mm/m64
+0F D3 /r            PSRLQ mm, mm/m64
+0F D4 /r            PADDQ mm1, mm2/m64
+0F D5 /r            PMULLW mm, mm/m64
+0F D7 /r            PMOVMSKB r32, mm
+0F D8 /r            PSUBUSB mm, mm/m64
+0F D9 /r            PSUBUSW mm, mm/m64
+0F DA /r            PMINUB mm1, mm2/m64
+0F DB /r            PAND mm, mm/m64
+0F DC /r            PADDUSB mm, mm/m64
+0F DD /r            PADDUSW mm, mm/m64
+0F DE /r            PMAXUB mm1, mm2/m64
+0F DF /r            PANDN mm, mm/m64
+0F E0 /r            PAVGB mm1, mm2/m64
+0F E1 /r            PSRAW mm, mm/m64
+0F E2 /r            PSRAD mm, mm/m64
+0F E3 /r            PAVGW mm1, mm2/m64
+0F E4 /r            PMULHUW mm1, mm2/m64
+0F E5 /r            PMULHW mm, mm/m64
+0F E7 /r            MOVNTQ m64, mm
+0F E8 /r            PSUBSB mm, mm/m64
+0F E9 /r            PSUBSW mm, mm/m64
+0F EA /r            PMINSW mm1, mm2/m64
+0F EB /r            POR mm, mm/m64
+0F EC /r            PADDSB mm, mm/m64
+0F ED /r            PADDSW mm, mm/m64
+0F EE /r            PMAXSW mm1, mm2/m64
+0F EF /r            PXOR mm, mm/m64
+0F F1 /r            PSLLW mm, mm/m64
+0F F2 /r            PSLLD mm, mm/m64
+0F F3 /r            PSLLQ mm, mm/m64
+0F F4 /r            PMULUDQ mm1, mm2/m64
+0F F5 /r            PMADDWD mm, mm/m64
+0F F6 /r            PSADBW mm1, mm2/m64
+0F F7 /r            MASKMOVQ mm1, mm2
+0F F8 /r            PSUBB mm, mm/m64
+0F F9 /r            PSUBW mm, mm/m64
+0F FA /r            PSUBD mm, mm/m64
+0F FB /r            PSUBQ mm1, mm2/m64
+0F FC /r            PADDB mm, mm/m64
+0F FD /r            PADDW mm, mm/m64
+0F FE /r            PADDD mm, mm/m64
+10 /r               ADC r/m8, r8
+11 /r               ADC r/m32, r32
+12 /r               ADC r8, r/m8
+13 /r               ADC r32, r/m32
+14 ib               ADC AL, imm8
+15 id               ADC EAX, imm32
+16                  PUSH SS
+17                  POP SS
+18 /r               SBB r/m8, r8
+19 /r               SBB r/m32, r32
+1A /r               SBB r8, r/m8
+1B /r               SBB r32, r/m32
+1C ib               SBB AL, imm8
+1D id               SBB EAX, imm32
+1E                  PUSH DS
+1F                  POP DS
+20 /r               AND r/m8, r8
+21 /r               AND r/m32, r32
+22 /r               AND r8, r/m8
+23 /r               AND r32, r/m32
+24 ib               AND AL, imm8
+25 id               AND EAX, imm32
+27                  DAA
+28 /r               SUB r/m8, r8
+29 /r               SUB r/m32, r32
+2A /r               SUB r8, r/m8
+2B /r               SUB r32, r/m32
+2C ib               SUB AL, imm8
+2D id               SUB EAX, imm32
+2F                  DAS
+30 /r               XOR r/m8, r8
+31 /r               XOR r/m32, r32
+32 /r               XOR r8, r/m8
+33 /r               XOR r32, r/m32
+34 ib               XOR AL, imm8
+35 id               XOR EAX, imm32
+37                  AAA
+38 /r               CMP r/m8, r8
+39 /r               CMP r/m32, r32
+3A /r               CMP r8, r/m8
+3B /r               CMP r32, r/m32
+3C ib               CMP AL, imm8
+3D id               CMP EAX, imm32
+3F                  AAS
+48                  DEC r32
+49                  DEC r32
+4A                  DEC r32
+4B                  DEC r32
+4C                  DEC r32
+4D                  DEC r32
+4E                  DEC r32
+4F                  DEC r32
+50                  PUSH r32
+51                  PUSH r32
+52                  PUSH r32
+53                  PUSH r32
+54                  PUSH r32
+55                  PUSH r32
+56                  PUSH r32
+57                  PUSH r32
+60                  PUSHAD
+61                  POPAD
+62 /r               BOUND r32, m32&32
+63 /r               ARPL r/m16, r16
+68 imm32            PUSH imm32
+69 /r id            IMUL r32, imm32
+69 /r id            IMUL r32, r/m32, imm32
+6A imm8             PUSH imm8
+6B /r ib            IMUL r32, imm8
+6B /r ib            IMUL r32, r/m32, imm8
+6C                  INSB
+6D                  INSD
+6E                  OUTSB
+6F                  OUTSW
+70 cb               JO rel8
+71 cb               JNO rel8
+72 cb               JB rel8
+72 cb               JC rel8
+72 cb               JNAE rel8
+73 cb               JAE rel8
+73 cb               JNB rel8
+73 cb               JNC rel8
+74 cb               JE rel8
+74 cb               JZ rel8
+75 cb               JNE rel8
+75 cb               JNZ rel8
+76 cb               JBE rel8
+76 cb               JNA rel8
+77 cb               JA rel8
+77 cb               JNBE rel8
+78 cb               JS rel8
+79 cb               JNS rel8
+7A cb               JP rel8
+7A cb               JPE rel8
+7B cb               JNP rel8
+7B cb               JPO rel8
+7C cb               JNGE rel8
+7D cb               JGE rel8
+7E cb               JLE rel8
+7E cb               JNG rel8
+7F cb               JG rel8
+7F cb               JNLE rel8
+80 /0 ib            ADD r/m8, imm8
+80 /1 ib            OR r/m8, imm8
+80 /2 ib            ADC r/m8, imm8
+80 /3 ib            SBB r/m8, imm8
+80 /4 ib            AND r/m8, imm8
+80 /5 ib            SUB r/m8, imm8
+80 /6 ib            XOR r/m8, imm8
+80 /7 ib            CMP r/m8, imm8
+81 /0 id            ADD r/m32, imm32
+81 /1 id            OR r/m32, imm32
+81 /2 id            ADC r/m32, imm32
+81 /3 id            SBB r/m32, imm32
+81 /4 id            AND r/m32, imm32
+81 /5 id            SUB r/m32, imm32
+81 /6 id            XOR r/m32, imm32
+81 /7 id            CMP r/m32, imm32
+83 /0 ib            ADD r/m32, imm8
+83 /1 ib            OR r/m32, imm8
+83 /2 ib            ADC r/m32, imm8
+83 /3 ib            SBB r/m32, imm8
+83 /4 ib            AND r/m32, imm8
+83 /5 ib            SUB r/m32, imm8
+83 /6 ib            XOR r/m32, imm8
+83 /7 ib            CMP r/m32, imm8
+84 /r               TEST r/m8, r8
+85 /r               TEST r/m32, r32
+86 /r               XCHG r8, r/m8
+87 /r               XCHG r/m32, r32
+87 /r               XCHG r32, r/m32
+88 /r               MOV r/m8, r8
+89 /r               MOV r/m32, r32
+8A /r               MOV r8, r/m8
+8B /r               MOV r32, r/m32
+8C /r               MOV r/m16, Sreg**
+8D /r               LEA r32, mm
+8E /r               MOV Sreg, r/m16
+8F /0               POP m32
+90                  NOP
+91                  XCHG r16, AX
+91                  XCHG r32, EAX
+92                  XCHG r16, AX
+92                  XCHG r32, EAX
+93                  XCHG r16, AX
+93                  XCHG r32, EAX
+94                  XCHG r16, AX
+94                  XCHG r32, EAX
+95                  XCHG r16, AX
+95                  XCHG r32, EAX
+96                  XCHG r16, AX
+96                  XCHG r32, EAX
+97                  XCHG r16, AX
+97                  XCHG r32, EAX
+98                  CWD
+99                  CWD
+9A cp               CALL ptr16:32
+9B                  WAIT
+9C                  PUSHFD
+9D                  POPFD
+9E                  SAHF
+9F                  LAHFAH
+A0 moffs8           MOV AL, moffs8
+A1 moffs32          MOV EAX, moffs32
+A2 moffs8           MOV moffs8
+A3 moffs32          MOV moffs32
+A4                  MOVSB
+A5                  MOVSD
+A6                  CMPSB
+A7                  CMPSD
+A9 id               TEST EAX, imm32
+AA                  STOS m8
+AB                  STOS m32
+AC                  LODS m8
+AD                  LODS m32
+AE                  SCAS m8
+AF                  SCAS m32
+C0 /0 ib            ROL r/m8, imm8
+C0 /1 ib            ROR r/m8, imm8
+C0 /2 ib            RCL r/m8, imm8
+C0 /3 ib            RCR r/m8, imm8
+C0 /4 ib            SAL r/m8, imm8
+C0 /5 ib            SHR r/m8, imm8
+C0 /7 ib            SAR r/m8, imm8
+C1 /0 ib            ROL r/m32, imm8
+C1 /1 ib            ROR r/m32, imm8
+C1 /2 ib            RCL r/m32, imm8
+C1 /3 ib            RCR r/m32, imm8
+C1 /4 ib            SAL r/m32, imm8
+C1 /4 ib            SHL r/m32, imm8
+C1 /5 ib            SHR r/m32, imm8
+C1 /7 ib            SAR r/m32, imm8
+C2 iw               RET imm16
+C3                  RET
+C4 /r               LES r32, m16:32
+C5 /r               LDS r32, m16:32
+C6 /0 imm8          MOV r/m8, imm8
+C7 /0 imm32         MOV r/m32, imm32
+C8 iw ib            ENTER imm16, imm8
+C9                  LEAVE
+CA iw               RET imm16
+CB                  RET
+CC                  INT 3
+CD ib               INT imm8
+CE                  INTO
+CF                  IRETD
+D0 /0               ROL r/m8, 1
+D0 /1               ROR r/m8, 1
+D0 /2               RCL r/m8, 1
+D0 /3               RCR r/m8, 1
+D0 /4               SAL r/m8
+D0 /5               SHR r/m8
+D0 /7               SAR r/m8
+D1 /0               ROL r/m32, 1
+D1 /1               ROR r/m32, 1
+D1 /2               RCL r/m32, 1
+D1 /3               RCR r/m32, 1
+D1 /4               SAL r/m32
+D1 /4               SHL r/m32
+D1 /5               SHR r/m32
+D1 /7               SAR r/m32
+D2 /0               ROL r/m8, CL
+D2 /1               ROR r/m8, CL
+D2 /2               RCL r/m8, CL
+D2 /3               RCR r/m8, CL
+D2 /4               SAL r/m8, CL
+D2 /5               SHR r/m8, CL
+D2 /7               SAR r/m8, CL
+D3 /0               ROL r/m32, CL
+D3 /1               ROR r/m32, CL
+D3 /2               RCL r/m32, CL
+D3 /3               RCR r/m32, CL
+D3 /4               SAL r/m32, CL
+D3 /5               SHR r/m32, CL
+D3 /7               SAR r/m32, CL
+D4 0A               AAM
+D4 ib               AAMB
+D5 0A               AAD
+D5 ib               AADB
+D7                  XLATB
+D8 /0               FADD m32fp
+D8 /1               FMUL m32fp
+D8 /2               FCOM m32fp
+D8 /3               FCOMP m32fp
+D8 /4               FSUB m32fp
+D8 /5               FSUBR m32fp
+D8 /6               FDIV m32fp
+D8 /7               FDIVR m32fp
+D8 C0               FADD ST(0), ST(i)
+D8 C1               FADD ST(0), ST(i)
+D8 C2               FADD ST(0), ST(i)
+D8 C3               FADD ST(0), ST(i)
+D8 C4               FADD ST(0), ST(i)
+D8 C5               FADD ST(0), ST(i)
+D8 C6               FADD ST(0), ST(i)
+D8 C7               FADD ST(0), ST(i)
+D8 C8               FMUL ST(0), ST(i)
+D8 C9               FMUL ST(0), ST(i)
+D8 CA               FMUL ST(0), ST(i)
+D8 CB               FMUL ST(0), ST(i)
+D8 CC               FMUL ST(0), ST(i)
+D8 CD               FMUL ST(0), ST(i)
+D8 CE               FMUL ST(0), ST(i)
+D8 CF               FMUL ST(0), ST(i)
+D8 D0               FCOM ST(i)
+D8 D1               FCOM ST(i)
+D8 D2               FCOM ST(i)
+D8 D3               FCOM ST(i)
+D8 D4               FCOM ST(i)
+D8 D5               FCOM ST(i)
+D8 D6               FCOM ST(i)
+D8 D7               FCOM ST(i)
+D8 D8               FCOMP ST(i)
+D8 D9               FCOMP ST(i)
+D8 DA               FCOMP ST(i)
+D8 DB               FCOMP ST(i)
+D8 DC               FCOMP ST(i)
+D8 DD               FCOMP ST(i)
+D8 DE               FCOMP ST(i)
+D8 DF               FCOMP ST(i)
+D8 E0               FSUB ST(0), ST(i)
+D8 E1               FSUB ST(0), ST(i)
+D8 E2               FSUB ST(0), ST(i)
+D8 E3               FSUB ST(0), ST(i)
+D8 E4               FSUB ST(0), ST(i)
+D8 E5               FSUB ST(0), ST(i)
+D8 E6               FSUB ST(0), ST(i)
+D8 E7               FSUB ST(0), ST(i)
+D8 E8               FSUBR ST(0), ST(i)
+D8 E9               FSUBR ST(0), ST(i)
+D8 EA               FSUBR ST(0), ST(i)
+D8 EB               FSUBR ST(0), ST(i)
+D8 EC               FSUBR ST(0), ST(i)
+D8 ED               FSUBR ST(0), ST(i)
+D8 EE               FSUBR ST(0), ST(i)
+D8 EF               FSUBR ST(0), ST(i)
+D8 F0               FDIV ST(0), ST(i)
+D8 F1               FDIV ST(0), ST(i)
+D8 F2               FDIV ST(0), ST(i)
+D8 F3               FDIV ST(0), ST(i)
+D8 F4               FDIV ST(0), ST(i)
+D8 F5               FDIV ST(0), ST(i)
+D8 F6               FDIV ST(0), ST(i)
+D8 F7               FDIV ST(0), ST(i)
+D8 F8               FDIVR ST(0), ST(i)
+D8 F9               FDIVR ST(0), ST(i)
+D8 FA               FDIVR ST(0), ST(i)
+D8 FB               FDIVR ST(0), ST(i)
+D8 FC               FDIVR ST(0), ST(i)
+D8 FD               FDIVR ST(0), ST(i)
+D8 FE               FDIVR ST(0), ST(i)
+D8 FF               FDIVR ST(0), ST(i)
+D9 /0               FLD m32fp
+D9 /2               FST m32fp
+D9 /3               FSTP m32fp
+D9 /4               FLDENV m14/28byte
+D9 /5               FLDCW m2byte
+D9 /6               FNSTENV
+D9 /7               FNSTCW
+D9 C0               FLD ST(i)
+D9 C1               FLD ST(i)
+D9 C2               FLD ST(i)
+D9 C3               FLD ST(i)
+D9 C4               FLD ST(i)
+D9 C5               FLD ST(i)
+D9 C6               FLD ST(i)
+D9 C7               FLD ST(i)
+D9 C8               FXCH ST(i)
+D9 C9               FXCH ST(i)
+D9 CA               FXCH ST(i)
+D9 CB               FXCH ST(i)
+D9 CC               FXCH ST(i)
+D9 CD               FXCH ST(i)
+D9 CE               FXCH ST(i)
+D9 CF               FXCH ST(i)
+D9 D0               FNOP
+D9 E0               FCHS
+D9 E1               FABS
+D9 E4               FTST
+D9 E5               FXAM
+D9 E8               FLD1
+D9 E9               FLDL2Tlog
+D9 EA               FLDL2Elog
+D9 EB               FLDPI
+D9 EC               FLDLG2log
+D9 ED               FLDLN2log
+D9 EE               FLDZ
+D9 F0               F2XM1
+D9 F1               FYL2X
+D9 F2               FPTAN
+D9 F3               FPATAN
+D9 F4               FXTRACT
+D9 F5               FPREM1
+D9 F6               FDECSTP
+D9 F7               FINCSTP
+D9 F8               FPREM
+D9 F9               FYL2XP1
+D9 FA               FSQRT
+D9 FB               FSINCOS
+D9 FC               FRNDINT
+D9 FD               FSCALE
+D9 FE               FSIN
+D9 FF               FCOS
+DA /0               FIADD m32int
+DA /1               FIMUL m32int
+DA /2               FICOM m32int
+DA /3               FICOMP m32int
+DA /4               FISUB m32int
+DA /5               FISUBR m32int
+DA /6               FIDIV m32int
+DA /7               FIDIVR m32int
+DA C0               FCMOVB ST(0), ST(i)
+DA C1               FCMOVB ST(0), ST(i)
+DA C2               FCMOVB ST(0), ST(i)
+DA C3               FCMOVB ST(0), ST(i)
+DA C4               FCMOVB ST(0), ST(i)
+DA C5               FCMOVB ST(0), ST(i)
+DA C6               FCMOVB ST(0), ST(i)
+DA C7               FCMOVB ST(0), ST(i)
+DA C8               FCMOVE ST(0), ST(i)
+DA C9               FCMOVE ST(0), ST(i)
+DA CA               FCMOVE ST(0), ST(i)
+DA CB               FCMOVE ST(0), ST(i)
+DA CC               FCMOVE ST(0), ST(i)
+DA CD               FCMOVE ST(0), ST(i)
+DA CE               FCMOVE ST(0), ST(i)
+DA CF               FCMOVE ST(0), ST(i)
+DA D0               FCMOVBE ST(0), ST(i)
+DA D1               FCMOVBE ST(0), ST(i)
+DA D2               FCMOVBE ST(0), ST(i)
+DA D3               FCMOVBE ST(0), ST(i)
+DA D4               FCMOVBE ST(0), ST(i)
+DA D5               FCMOVBE ST(0), ST(i)
+DA D6               FCMOVBE ST(0), ST(i)
+DA D7               FCMOVBE ST(0), ST(i)
+DA D8               FCMOVU ST(0), ST(i)
+DA D9               FCMOVU ST(0), ST(i)
+DA DA               FCMOVU ST(0), ST(i)
+DA DB               FCMOVU ST(0), ST(i)
+DA DC               FCMOVU ST(0), ST(i)
+DA DD               FCMOVU ST(0), ST(i)
+DA DE               FCMOVU ST(0), ST(i)
+DA DF               FCMOVU ST(0), ST(i)
+DA E9               FUCOMPP
+DB /0               FILD m32int
+DB /1               FISTTP m32int
+DB /2               FIST m32int
+DB /3               FISTP m32int
+DB /5               FLD m80fp
+DB /7               FSTP m80fp
+DB C0               FCMOVNB ST(0), ST(i)
+DB C1               FCMOVNB ST(0), ST(i)
+DB C2               FCMOVNB ST(0), ST(i)
+DB C3               FCMOVNB ST(0), ST(i)
+DB C4               FCMOVNB ST(0), ST(i)
+DB C5               FCMOVNB ST(0), ST(i)
+DB C6               FCMOVNB ST(0), ST(i)
+DB C7               FCMOVNB ST(0), ST(i)
+DB C8               FCMOVNE ST(0), ST(i)
+DB C9               FCMOVNE ST(0), ST(i)
+DB CA               FCMOVNE ST(0), ST(i)
+DB CB               FCMOVNE ST(0), ST(i)
+DB CC               FCMOVNE ST(0), ST(i)
+DB CD               FCMOVNE ST(0), ST(i)
+DB CE               FCMOVNE ST(0), ST(i)
+DB CF               FCMOVNE ST(0), ST(i)
+DB D0               FCMOVNBE ST(0),
+DB D1               FCMOVNBE ST(0),
+DB D2               FCMOVNBE ST(0),
+DB D3               FCMOVNBE ST(0),
+DB D4               FCMOVNBE ST(0),
+DB D5               FCMOVNBE ST(0),
+DB D6               FCMOVNBE ST(0),
+DB D7               FCMOVNBE ST(0),
+DB D8               FCMOVNU ST(0), ST(i)
+DB D9               FCMOVNU ST(0), ST(i)
+DB DA               FCMOVNU ST(0), ST(i)
+DB DB               FCMOVNU ST(0), ST(i)
+DB DC               FCMOVNU ST(0), ST(i)
+DB DD               FCMOVNU ST(0), ST(i)
+DB DE               FCMOVNU ST(0), ST(i)
+DB DF               FCMOVNU ST(0), ST(i)
+DB E0               FUCOMI ST, ST(i)
+DB E1               FUCOMI ST, ST(i)
+DB E2               FNCLEX
+DB E2               FUCOMI ST, ST(i)
+DB E3               FNINIT
+DB E3               FUCOMI ST, ST(i)
+DB E4               FUCOMI ST, ST(i)
+DB E5               FUCOMI ST, ST(i)
+DB E6               FUCOMI ST, ST(i)
+DB E7               FUCOMI ST, ST(i)
+DB F8               FCOMI ST, ST(i)
+DB F9               FCOMI ST, ST(i)
+DB FA               FCOMI ST, ST(i)
+DB FB               FCOMI ST, ST(i)
+DB FC               FCOMI ST, ST(i)
+DB FD               FCOMI ST, ST(i)
+DB FE               FCOMI ST, ST(i)
+DB FF               FCOMI ST, ST(i)
+DC /0               FADD m64fp
+DC /1               FMUL m64fp
+DC /2               FCOM m64fp
+DC /3               FCOMP m64fp
+DC /4               FSUB m64fp
+DC /5               FSUBR m64fp
+DC /6               FDIV m64fp
+DC /7               FDIVR m64fp
+DC C0               FADD ST(i), ST(0)
+DC C1               FADD ST(i), ST(0)
+DC C2               FADD ST(i), ST(0)
+DC C3               FADD ST(i), ST(0)
+DC C4               FADD ST(i), ST(0)
+DC C5               FADD ST(i), ST(0)
+DC C6               FADD ST(i), ST(0)
+DC C7               FADD ST(i), ST(0)
+DC C8               FMUL ST(i), ST(0)
+DC C9               FMUL ST(i), ST(0)
+DC CA               FMUL ST(i), ST(0)
+DC CB               FMUL ST(i), ST(0)
+DC CC               FMUL ST(i), ST(0)
+DC CD               FMUL ST(i), ST(0)
+DC CE               FMUL ST(i), ST(0)
+DC CF               FMUL ST(i), ST(0)
+DC E0               FSUBR ST(i), ST(0)
+DC E1               FSUBR ST(i), ST(0)
+DC E2               FSUBR ST(i), ST(0)
+DC E3               FSUBR ST(i), ST(0)
+DC E4               FSUBR ST(i), ST(0)
+DC E5               FSUBR ST(i), ST(0)
+DC E6               FSUBR ST(i), ST(0)
+DC E7               FSUBR ST(i), ST(0)
+DC E8               FSUB ST(i), ST(0)
+DC E9               FSUB ST(i), ST(0)
+DC EA               FSUB ST(i), ST(0)
+DC EB               FSUB ST(i), ST(0)
+DC EC               FSUB ST(i), ST(0)
+DC ED               FSUB ST(i), ST(0)
+DC EE               FSUB ST(i), ST(0)
+DC EF               FSUB ST(i), ST(0)
+DC F0               FDIVR ST(i), ST(0)
+DC F1               FDIVR ST(i), ST(0)
+DC F2               FDIVR ST(i), ST(0)
+DC F3               FDIVR ST(i), ST(0)
+DC F4               FDIVR ST(i), ST(0)
+DC F5               FDIVR ST(i), ST(0)
+DC F6               FDIVR ST(i), ST(0)
+DC F7               FDIVR ST(i), ST(0)
+DC F8               FDIV ST(i), ST(0)
+DC F9               FDIV ST(i), ST(0)
+DC FA               FDIV ST(i), ST(0)
+DC FB               FDIV ST(i), ST(0)
+DC FC               FDIV ST(i), ST(0)
+DC FD               FDIV ST(i), ST(0)
+DC FE               FDIV ST(i), ST(0)
+DC FF               FDIV ST(i), ST(0)
+DD /0               FLD m64fp
+DD /1               FISTTP m64int
+DD /2               FST m64fp
+DD /3               FSTP m64fp
+DD /4               FRSTOR m94/108byte
+DD /6               FNSAVE* m94/108byte
+DD /7               FNSTSW* m2byte
+DD C0               FFREE ST(i)
+DD C1               FFREE ST(i)
+DD C2               FFREE ST(i)
+DD C3               FFREE ST(i)
+DD C4               FFREE ST(i)
+DD C5               FFREE ST(i)
+DD C6               FFREE ST(i)
+DD C7               FFREE ST(i)
+DD D0               FST ST(i)
+DD D1               FST ST(i)
+DD D2               FST ST(i)
+DD D3               FST ST(i)
+DD D4               FST ST(i)
+DD D5               FST ST(i)
+DD D6               FST ST(i)
+DD D7               FST ST(i)
+DD D8               FSTP ST(i)
+DD D9               FSTP ST(i)
+DD DA               FSTP ST(i)
+DD DB               FSTP ST(i)
+DD DC               FSTP ST(i)
+DD DD               FSTP ST(i)
+DD DE               FSTP ST(i)
+DD DF               FSTP ST(i)
+DD E0               FUCOM ST(i)
+DD E1               FUCOM ST(i)
+DD E2               FUCOM ST(i)
+DD E3               FUCOM ST(i)
+DD E4               FUCOM ST(i)
+DD E5               FUCOM ST(i)
+DD E6               FUCOM ST(i)
+DD E7               FUCOM ST(i)
+DD E8               FUCOMP ST(i)
+DD E9               FUCOMP ST(i)
+DD E9               FUCOMP ST(0)
+DD EA               FUCOMP ST(i)
+DD EB               FUCOMP ST(i)
+DD EC               FUCOMP ST(i)
+DD ED               FUCOMP ST(i)
+DD EE               FUCOMP ST(i)
+DD EF               FUCOMP ST(i)
+DE /0               FIADD m16int
+DE /1               FIMUL m16int
+DE /2               FICOM m16int
+DE /3               FICOMP m16int
+DE /4               FISUB m16int
+DE /5               FISUBR m16int
+DE /6               FIDIV m16int
+DE /7               FIDIVR m16int
+DE C0               FADDP ST(i), ST(0)
+DE C1               FADDP ST(i), ST(0)
+DE C2               FADDP ST(i), ST(0)
+DE C3               FADDP ST(i), ST(0)
+DE C4               FADDP ST(i), ST(0)
+DE C5               FADDP ST(i), ST(0)
+DE C6               FADDP ST(i), ST(0)
+DE C7               FADDP ST(i), ST(0)
+DE C8               FMULP ST(i), ST(0)
+DE C9               FMULP ST(i), ST(0)
+DE CA               FMULP ST(i), ST(0)
+DE CB               FMULP ST(i), ST(0)
+DE CC               FMULP ST(i), ST(0)
+DE CD               FMULP ST(i), ST(0)
+DE CE               FMULP ST(i), ST(0)
+DE CF               FMULP ST(i), ST(0)
+DE D9               FCOMPP
+DE E0               FSUBRP ST(i), ST(0)
+DE E1               FSUBRP ST(i), ST(0)
+DE E2               FSUBRP ST(i), ST(0)
+DE E3               FSUBRP ST(i), ST(0)
+DE E4               FSUBRP ST(i), ST(0)
+DE E5               FSUBRP ST(i), ST(0)
+DE E6               FSUBRP ST(i), ST(0)
+DE E7               FSUBRP ST(i), ST(0)
+DE E8               FSUBP ST(i), ST(0)
+DE E9               FSUBP ST(i), ST(0)
+DE EA               FSUBP ST(i), ST(0)
+DE EB               FSUBP ST(i), ST(0)
+DE EC               FSUBP ST(i), ST(0)
+DE ED               FSUBP ST(i), ST(0)
+DE EE               FSUBP ST(i), ST(0)
+DE EF               FSUBP ST(i), ST(0)
+DE F0               FDIVRP ST(i), ST(0)
+DE F1               FDIVRP ST(i), ST(0)
+DE F2               FDIVRP ST(i), ST(0)
+DE F3               FDIVRP ST(i), ST(0)
+DE F4               FDIVRP ST(i), ST(0)
+DE F5               FDIVRP ST(i), ST(0)
+DE F6               FDIVRP ST(i), ST(0)
+DE F7               FDIVRP ST(i), ST(0)
+DE F8               FDIVP ST(i), ST(0)
+DE F9               FDIVP ST(i), ST(0)
+DE FA               FDIVP ST(i), ST(0)
+DE FB               FDIVP ST(i), ST(0)
+DE FC               FDIVP ST(i), ST(0)
+DE FD               FDIVP ST(i), ST(0)
+DE FE               FDIVP ST(i), ST(0)
+DE FF               FDIVP ST(i), ST(0)
+DF /0               FILD m16int
+DF /1               FISTTP m16int
+DF /2               FIST m16int
+DF /3               FISTP m16int
+DF /4               FBLD m80bcd
+DF /5               FILD m64int
+DF /6               FBSTP m80bcd
+DF /7               FISTP m64int
+DF E0               FNSTSW
+DF E7               FUCOMIP ST, ST(i)
+DF E8               FUCOMIP ST, ST(i)
+DF E9               FUCOMIP ST, ST(i)
+DF EA               FUCOMIP ST, ST(i)
+DF EB               FUCOMIP ST, ST(i)
+DF EC               FUCOMIP ST, ST(i)
+DF ED               FUCOMIP ST, ST(i)
+DF EE               FUCOMIP ST, ST(i)
+DF EF               FUCOMIP ST, ST(i)
+DF F0               FCOMIP ST, ST(i)
+DF F1               FCOMIP ST, ST(i)
+DF F2               FCOMIP ST, ST(i)
+DF F3               FCOMIP ST, ST(i)
+DF F4               FCOMIP ST, ST(i)
+DF F5               FCOMIP ST, ST(i)
+DF F6               FCOMIP ST, ST(i)
+DF F7               FCOMIP ST, ST(i)
+E0 cb               LOOPNE rel8
+E0 cb               LOOPNZ rel8
+E1 cb               LOOPE rel8
+E1 cb               LOOPZ rel8
+E2 cb               LOOP rel8
+E3 cb               JCXZ rel8
+E3 cb               JECXZ rel8
+E4 ib               IN AL, imm8
+E5 ib               IN AX, imm8
+E5 ib               IN EAX, imm8
+E6 ib               OUT imm8, AL
+E7 ib               OUT imm8, AX
+E7 ib               OUT imm8, EAX
+E8 cd               CALL rel32
+E9 cd               JMP rel32
+EA cp               JMP ptr16:32
+EB cb               JMP rel8
+EC                  IN AL, DX
+ED                  IN AX, DX
+ED                  IN EAX, DX
+EE                  OUT DX, AL
+EF                  OUT DX, AX
+EF                  OUT DX, EAX
+F4                  HLT
+F5                  CMC
+F6 /0 ib            TEST r/m8, imm8
+F6 /2               NOT r/m8
+F6 /3               NEG r/m8
+F6 /4               MUL r/m8
+F6 /5               IMUL r/m8
+F6 /6               DIV r/m8
+F6 /7               IDIV r/m8
+F7 /0 id            TEST r/m32, imm32
+F7 /2               NOT r/m32
+F7 /3               NEG r/m32
+F7 /4               MUL r/m32
+F7 /5               IMUL r/m32
+F7 /6               DIV r/m32
+F7 /7               IDIV r/m32
+F8                  CLC
+F9                  STC
+FA                  CLI
+FB                  STI
+FC                  CLD
+FD                  STD
+FE /0               INC r/m8
+FE /1               DEC r/m8
+FF /0               INC r/m32
+FF /1               DEC r/m32
+FF /2               CALL r/m32
+FF /3               CALL m16:32
+FF /4               JMP r/m32
+FF /5               JMP m16:32
+FF /6               PUSH r/m32
+
+66 0F 10 /r         MOVUPD xmm1,
+66 0F 11 /r         MOVUPD xmm2/m128,
+66 0F 12 /r         MOVLPD xmm, m64
+66 0F 13 /r         MOVLPD m64, xmm
+66 0F 14 /r         UNPCKLPD xmm1,
+66 0F 15 /r         UNPCKHPD xmm1,
+66 0F 16 /r         MOVHPD xmm, m64
+66 0F 17 /r         MOVHPD m64, xmm
+66 0F 28 /r         MOVAPD xmm1,
+66 0F 29 /r         MOVAPD xmm2/m128,
+66 0F 2A /r         CVTPI2PD xmm, mm/m64
+66 0F 2B /r         MOVNTPD m128, xmm
+66 0F 2C /r         CVTTPD2PI mm,
+66 0F 2D /r         CVTPD2PI mm,
+66 0F 2E /r         UCOMISD xmm1, xmm2/m64
+66 0F 2F /r         COMISD xmm1, xmm2/m64
+66 0F 50 /r         MOVMSKPD r32,
+66 0F 51 /r         SQRTPD xmm1, xmm2/m128
+66 0F 54 /r         ANDPD xmm1, xmm2/m128
+66 0F 55 /r         ADDPD xmm1, xmm2/m128
+66 0F 56 /r         ORPD xmm1, xmm2/m128x
+66 0F 57 /r         XORPD xmm1, xmm2/m128
+66 0F 58 /r         ADDPD xmm1,
+66 0F 59 /r         MULPD xmm1,
+66 0F 5A /r         CVTPD2PS xmm1,
+66 0F 5B /r         CVTPS2DQ xmm1,
+66 0F 5C /r         SUBPD xmm1, xmm2/m128
+66 0F 5D /r         MINPD xmm1,
+66 0F 5E /r         DIVPD xmm1,
+66 0F 5F /r         MAXPD xmm1,
+66 0F 60 /r         PUNPCKLBW xmm1,
+66 0F 61 /r         PUNPCKLWD xmm1,
+66 0F 62 /r         PUNPCKLDQ xmm1,
+66 0F 63 /r         PACKSSWB xmm1,
+66 0F 64 /r         PCMPGTB xmm1, xmm2/m128
+66 0F 65 /r         PCMPGTW xmm1, xmm2/m128
+66 0F 66 /r         PCMPGTD xmm1, xmm2/m128
+66 0F 67 /r         PACKUSWB xmm1,
+66 0F 68 /r         PUNPCKHBW xmm1,
+66 0F 69 /r         PUNPCKHWD xmm1,
+66 0F 6A /r         PUNPCKHDQ xmm1,
+66 0F 6B /r         PACKSSDW xmm1,
+66 0F 6C /r         PUNPCKLQDQ xmm1,
+66 0F 6D /r         PUNPCKHQDQ xmm1,
+66 0F 6E /r         MOVD xmm, r/m32
+66 0F 6F /r         MOVDQA xmm1,
+66 0F 70 /r ib      PSHUFD xmm1,
+66 0F 71 /2 ib      PSRLW xmm1, imm8
+66 0F 71 /4 ib      PSRAW xmm1, imm8
+66 0F 71 /6 ib      PSLLW xmm1, imm8
+66 0F 72 /2 ib      PSRLD xmm1, imm8
+66 0F 72 /4 ib      PSRAD xmm1, imm8
+66 0F 72 /6 ib      PSLLD xmm1, imm8
+66 0F 73 /2 ib      PSRLQ xmm1, imm8
+66 0F 73 /3 ib      PSRLDQ xmm1, imm8
+66 0F 73 /6 ib      PSLLQ xmm1, imm8
+66 0F 73 /7 ib      PSLLDQ xmm1, imm8
+66 0F 74 /r         PCMPEQB xmm1, xmm2/m128
+66 0F 75 /r         PCMPEQW xmm1, xmm2/m128
+66 0F 76 /r         PCMPEQD xmm1, xmm2/m128
+66 0F 7E /r         MOVD r/m32, xmm
+66 0F 7F /r         MOVDQA xmm2/m128,
+66 0F C2 /r ib      CMPPD xmm1,
+66 0F C4 /r ib      PINSRW xmm, r32/m16, imm8
+66 0F C5 /r ib      PEXTRW r32, xmm, imm8
+66 0F C6 /r ib      SHUFPD xmm1,
+66 0F D1 /r         PSRLW xmm1, xmm2/m128
+66 0F D2 /r         PSRLD xmm1, xmm2/m128
+66 0F D3 /r         PSRLQ xmm1, xmm2/m128
+66 0F D4 /r         PADDQ xmm1, xmm2/m128
+66 0F D5 /r         PMULLW xmm1, xmm2/m128
+66 0F D6            MOVQ xmm2/m64, xmm1
+66 0F D7 /r         PMOVMSKB r32, xmm
+66 0F D8 /r         PSUBUSB xmm1, xmm2/m128
+66 0F D9 /r         PSUBUSW xmm1, xmm2/m128
+66 0F DA /r         PMINUB xmm1, xmm2/m128
+66 0F DB /r         PAND xmm1, xmm2/m128
+66 0F DC /r         PADDUSB xmm1, xmm2/m128
+66 0F DD /r         PADDUSW xmm1, xmm2/m128
+66 0F DE /r         PMAXUB xmm1, xmm2/m128
+66 0F DF /r         PANDN xmm1, xmm2/m128
+66 0F E0 /r         PAVGB xmm1, xmm2/m128
+66 0F E1 /r         PSRAW xmm1, xmm2/m128
+66 0F E2 /r         PSRAD xmm1, xmm2/m128
+66 0F E3 /r         PAVGW xmm1, xmm2/m128
+66 0F E4 /r         PMULHUW xmm1, xmm2/m128
+66 0F E5 /r         PMULHW xmm1, xmm2/m128
+66 0F E6            CVTTPD2DQ xmm1,
+66 0F E7 /r         MOVNTDQ m128, xmm
+66 0F E8 /r         PSUBSB xmm1, xmm2/m128
+66 0F E9 /r         PSUBSW xmm1, xmm2/m128
+66 0F EA /r         PMINSW xmm1, xmm2/m128
+66 0F EB /r         POR xmm1, xmm2/m128
+66 0F EC /r         PADDSB xmm1, xmm2/m128
+66 0F ED /r         PADDSW xmm1, xmm2/m128
+66 0F EE /r         PMAXSW xmm1, xmm2/m128
+66 0F EF /r         PXOR xmm1, xmm2/m128
+66 0F F1 /r         PSLLW xmm1, xmm2/m128
+66 0F F2 /r         PSLLD xmm1, xmm2/m128
+66 0F F3 /r         PSLLQ xmm1, xmm2/m128
+66 0F F4 /r         PMULUDQ xmm1, xmm2/m128
+66 0F F5 /r         PMADDWD xmm1, xmm2/m128
+66 0F F6 /r         PSADBW xmm1, xmm2/m128
+66 0F F7 /r         MASKMOVDQU xmm1,
+66 0F F8 /r         PSUBB xmm1, xmm2/m128
+66 0F F9 /r         PSUBW xmm1, xmm2/m128
+66 0F FA /r         PSUBD xmm1, xmm2/m128
+66 0F FB /r         PSUBQ xmm1, xmm2/m128
+66 0F FC /r         PADDB xmm1, mm2/m128
+66 0F FD /r         PADDW xmm1, xmm2/m128
+66 0F FE /r         PADDD xmm1, xmm2/m128
+67 01 /r            ADD r/m16, r16
+67 03 /r            ADD r16, r/m16
+67 05 iw            ADD AX, imm16
+67 09 /r            OR r/m16, r16
+67 0B /r            OR r16, r/m16
+67 0D iw            OR AX, imm16
+67 0F 00 /0         SLDT r/m16
+67 0F 01 /4         SMSW r32/m16
+67 0F 02 /r         LAR r16, r/m16
+67 0F 03 /r         LSL r16, r/m16
+67 0F 40 /r         CMOVO r16, r/m16
+67 0F 41 /r         CMOVNO r16, r/m16
+67 0F 42 /r         CMOVB r16, r/m16
+67 0F 42 /r         CMOVC r16, r/m16
+67 0F 42 /r         CMOVNAE r16, r/m16
+67 0F 43 /r         CMOVAE r16, r/m16
+67 0F 43 /r         CMOVNB r16, r/m16
+67 0F 43 /r         CMOVNC r16, r/m16
+67 0F 44 /r         CMOVZ r16, r/m16
+67 0F 45 /r         CMOVNE r16, r/m16
+67 0F 45 /r         CMOVNZ r16
+67 0F 46 /r         CMOVBE r16, r/m16
+67 0F 47 /r         CMOVA r16, r/m16
+67 0F 47 /r         CMOVNBE r16, r/m16
+67 0F 48 /r         CMOVS r16, r/m16
+67 0F 49 /r         CMOVNS r16, r/m16
+67 0F 4A /r         CMOVP r16, r/m16
+67 0F 4A /r         CMOVPE r16, r/m16
+67 0F 4B /r         CMOVNP r16, r/m16
+67 0F 4B /r         CMOVPO r16, r/m16
+67 0F 4C /r         CMOVL r16, r/m16
+67 0F 4C /r         CMOVNGE r16, r/m16
+67 0F 4D /r         CMOVGE r16, r/m16
+67 0F 4D /r         CMOVNL r16, r/m16
+67 0F 4E /r         CMOVLE r16, r/m16
+67 0F 4E /r         CMOVNG r16, r/m16
+67 0F 4F /r         CMOVG r16, r/m16
+67 0F 4F /r         CMOVNLE r16, r/m16
+67 0F 80 cw         JO rel16/32
+67 0F 81 cw         JNO rel16/32
+67 0F 82 cw         JB rel16/32
+67 0F 82 cw         JC rel16/32
+67 0F 82 cw         JNAE rel16/32
+67 0F 83 cw         JAE rel16/32
+67 0F 83 cw         JNB rel16/32
+67 0F 83 cw         JNC rel16/32
+67 0F 84 cw         JE rel16/32
+67 0F 84 cw         JZ rel16/320
+67 0F 84 cw         JZ rel16/32
+67 0F 85 cw         JNE rel16/32
+67 0F 85 cw         JNZ rel16/32
+67 0F 86 cw         JBE rel16/32
+67 0F 86 cw         JNA rel16/32
+67 0F 87 cw         JA rel16/32
+67 0F 88 cw         JS rel16/32
+67 0F 89 cw         JNS rel16/32
+67 0F 8A cw         JP rel16/32
+67 0F 8A cw         JPE rel16/32
+67 0F 8B cw         JNP rel16/32
+67 0F 8B cw         JPO rel16/32
+67 0F 8C cw         JL rel16/32
+67 0F 8C cw         JNGE rel16/32
+67 0F 8D cw         JGE rel16/32
+67 0F 8D cw         JNL rel16/32
+67 0F 8E cw         JLE rel16/32
+67 0F 8E cw         JNG rel16/32
+67 0F 8F cw         JG rel16/32
+67 0F 8F cw         JNLE rel16/32
+67 0F A3 /r         BT r/m16, r16
+67 0F A4 /r imm8    SHLD r/m16, r16, imm8
+67 0F A5 /r         SHLD r/m16, r16, CL
+67 0F AB /r         BTS r/m16, r16
+67 0F AC /r imm8    SHRD r/m16, r16, imm8
+67 0F AD /r         SHRD r/m16, r16, CL
+67 0F AF /r         IMUL r16, r/m16
+67 0F B1 /r         CMPXCHG r/m16, r16
+67 0F B2 /r         LSS r16, m16:16
+67 0F B3 /r         BTR r/m16, r16
+67 0F B4 /r         LFS r16, m16:16
+67 0F B5 /r         LGS r16
+67 0F B6 /r         MOVZX r16, r/m8
+67 0F BA /4 ib      BT r/m16, imm8
+67 0F BA /5 ib      BTS r/m16, imm8
+67 0F BA /6 ib      BTR r/m16, imm8
+67 0F BA /7 ib      BTC r/m16, imm8
+67 0F BB /r         BTC r/m16, r16
+67 0F BC /r         BSF r16, r/m16
+67 0F BD /r         BSR r16, r/m16
+67 0F C1 /r         XADD r/m16, r16
+67 11 /r            ADC r/m16, r16
+67 13 /r            ADC r16, r/m16
+67 15 iw            ADC AX, imm16
+67 19 /r            SBB r/m16, r16
+67 1B /r            SBB r16, r/m16
+67 1D iw            SBB AX, imm16
+67 21 /r            AND r/m16, r16
+67 23 /r            AND r16, r/m16
+67 25 iw            AND AX, imm16
+67 29 /r            SUB r/m16, r16
+67 2B /r            SUB r16, r/m16
+67 2D iw            SUB AX, imm16
+67 31 /r            XOR r/m16, r16
+67 33 /r            XOR r16, r/m16
+67 35 iw            XOR AX, imm16
+67 39 /r            CMP r/m16, r16
+67 3B /r            CMP r16, r/m16
+67 3D iw            CMP AX, imm16
+67 50               PUSH r32
+67 51               PUSH r32
+67 52               PUSH r32
+67 53               PUSH r32
+67 54               PUSH r32
+67 55               PUSH r32
+67 56               PUSH r32
+67 57               PUSH r32
+67 60               PUSHA
+67 61               POPA
+67 62 /r            BOUND r16, m16&16
+67 68 imm16         PUSH imm16
+67 69 /r iw         IMUL r16, imm16
+67 69 /r iw         IMUL r16, r/m16, imm16
+67 6B /r ib         IMUL r16, imm8
+67 6B /r ib         IMUL r16, r/m16, imm8
+67 81 /0 iw         ADD r/m16, imm16
+67 81 /1 iw         OR r/m16, imm16
+67 81 /2 iw         ADC r/m16, imm16
+67 81 /3 iw         SBB r/m16, imm16
+67 81 /4 iw         AND r/m16, imm16
+67 81 /5 iw         SUB r/m16, imm16
+67 81 /6 iw         XOR r/m16, imm16
+67 81 /7 iw         CMP r/m16, imm16
+67 83 /0 ib         ADD r/m16, imm8
+67 83 /1 ib         OR r/m16, imm8
+67 83 /2 ib         ADC r/m16, imm8
+67 83 /3 ib         SBB r/m16, imm8
+67 83 /4 ib         AND r/m16, imm8
+67 83 /5 ib         SUB r/m16, imm8
+67 83 /6 ib         XOR r/m16, imm8
+67 83 /7 ib         CMP r/m16, imm8
+67 85 /r            TEST r/m16, r16
+67 86 /r            XCHG r/m8, r8
+67 87 /r            XCHG r/m16, r16
+67 87 /r            XCHG r16, r/m16
+67 89 /r            MOV r/m16, r16
+67 8B /r            MOV r16, r/m16
+67 8D /r            LEA r16, m
+67 8F /0            POP m16
+67 98               CBW
+67 99               CDQ
+67 9A cd            CALL ptr16:16
+67 9C               PUSHF
+67 9D               POPF
+67 A1 moffs16       MOV AX, moffs16
+67 A3 moffs16       MOV moffs16
+67 A5               MOVSW
+67 A7               CMPSW
+67 A9 iw            TEST AX, imm16
+67 AB               STOS m16
+67 AD               LODS m16
+67 AF               SCAS m16
+67 C1 /0 ib         ROL r/m16, imm8
+67 C1 /1 ib         ROR r/m16, imm8
+67 C1 /2 ib         RCL r/m16, imm8
+67 C1 /3 ib         RCR r/m16, imm8
+67 C1 /4 ib         SAL r/m16, imm8
+67 C1 /4 ib         SHL r/m16, imm8
+67 C1 /5 ib         SHR r/m16, imm8
+67 C1 /7 ib         SAR r/m16, imm8
+67 C4 /r            LES r16, m16:16
+67 C5 /r            LDS r16, m16:16
+67 C7 /0 imm16      MOV r/m16, imm16
+67 C9               LEAVE
+67 CF               IRET
+67 D1 /0            ROL r/m16, 1
+67 D1 /1            ROR r/m16, 1
+67 D1 /2            RCL r/m16, 1
+67 D1 /3            RCR r/m16, 1
+67 D1 /4            SAL r/m16
+67 D1 /4            SHL r/m16
+67 D1 /5            SHR r/m16
+67 D1 /7            SAR r/m16
+67 D3 /0            ROL r/m16, CL
+67 D3 /1            ROR r/m16, CL
+67 D3 /2            RCL r/m16, CL
+67 D3 /3            RCR r/m16, CL
+67 D3 /4            SAL r/m16, CL
+67 D3 /5            SHR r/m16, CL
+67 D3 /7            SAR r/m16, CL
+67 D7               XLAT m8
+67 E8 cw            CALL rel16
+67 E9 cw            JMP rel16
+67 EA cd            JMP ptr16:16
+67 F7 /0 iw         TEST r/m16, imm16
+67 F7 /2            NOT r/m16
+67 F7 /3            NEG r/m16
+67 F7 /4            MUL r/m16
+67 F7 /5            IMUL r/m16
+67 F7 /6            DIV r/m16
+67 F7 /7            IDIV r/m16
+67 FF /0            INC r/m16
+67 FF /1            DEC r/m16
+67 FF /2            CALL r/m16
+67 FF /3            CALL m16:16
+67 FF /4            JMP r/m16
+67 FF /5            JMP m16:16
+67 FF /6            PUSH r/m16
+F0                  LOCK
+F2 0F 10 /r         MOVSD xmm1,
+F2 0F 11 /r         MOVSD xmm2/m64, xmm
+F2 0F 2A /r         CVTSI2SD xmm, r/m32
+F2 0F 2C /r         CVTTSD2SI r32,
+F2 0F 2D /r         CVTSD2SI r32, xmm/m64
+F2 0F 51 /r         SQRTSD xmm1, xmm2/m64
+F2 0F 58 /r         ADDSD xmm1, xmm2/m64
+F2 0F 59 /r         MULSD xmm1, xmm2/m64
+F2 0F 5A /r         CVTSD2SS xmm1,
+F2 0F 5C /r         SUBSD xmm1, xmm2/m64
+F2 0F 5D /r         MINSD xmm1, xmm2/m64
+F2 0F 5E /r         DIVSD xmm1, xmm2/m64
+F2 0F 5F /r         MAXSD xmm1, xmm2/m64
+F2 0F 70 /r ib      PSHUFLW xmm1,
+F2 0F C2 /r ib      CMPSD xmm1,
+F2 0F D6            MOVDQ2Q mm, xmm
+F2 0F E6            CVTPD2DQ xmm1,
+F2 A6               REPNE CMPS m8, m8
+F2 A7               REPNE CMPS m16, m16
+F2 A7               REPNE CMPS m32, m32
+F2 AE               REPNE SCAS m8
+F2 AF               REPNE SCAS m16
+F2 AF               REPNE SCAS m32
+F3 0F 10 /r         MOVSS xmm1, xmm2/m32
+F3 0F 11 /r         MOVSS xmm2/m32, xmm1
+F3 0F 2A /r         CVTSI2SS xmm, r/m32
+F3 0F 2C /r         CVTTSS2SI r32,
+F3 0F 2D /r         CVTSS2SI r32, xmm/m32
+F3 0F 51 /r         SQRTSS xmm1, xmm2/m32
+F3 0F 52 /r         RSQRTSS xmm1,
+F3 0F 53 /r         RCPSS xmm1, xmm2/m32
+F3 0F 58 /r         ADDSS xmm1,
+F3 0F 59 /r         MULSS xmm1, xmm2/m32
+F3 0F 5A /r         CVTSS2SD xmm1,
+F3 0F 5B /r         CVTTPS2DQ xmm1,
+F3 0F 5C /r         SUBSS xmm1, xmm2/m32
+F3 0F 5D /r         MINSS xmm1, xmm2/m32
+F3 0F 5E /r         DIVSS xmm1, xmm2/m32
+F3 0F 5F /r         MAXSS xmm1, xmm2/m32
+F3 0F 6F /r         MOVDQU xmm1,
+F3 0F 70 /r ib      PSHUFHW xmm1,
+F3 0F 7E /r         MOVQ xmm1, xmm2/m64
+F3 0F 7F /r         MOVDQU xmm2/m128,
+F3 0F C2 /r ib      CMPSS xmm1,
+F3 0F D6            MOVQ2DQ xmm, mmmmx
+F3 0F E6            CVTDQ2PD xmm1,
+F3 6C               REP INS m8, DX(E)
+F3 6D               REP INS m16, DX(E)
+F3 6D               REP INS m32, DX(E)
+F3 6E               REP OUTS DX, r/m8(E)
+F3 6F               REP OUTS DX, r/m16(E)
+F3 6F               REP OUTS DX, r/m32(E)
+F3 90               PAUSE
+F3 A4               REP MOVS m8, m8(E)
+F3 A5               REP MOVS m16, m16(E)
+F3 A5               REP MOVS m32, m32(E)
+F3 A6               REPE CMPS m8, m8
+F3 A7               REPE CMPS m16, m16
+F3 A7               REPE CMPS m32, m32
+F3 AA               REP STOS m8
+F3 AB               REP STOS m16
+F3 AB               REP STOS m32
+F3 AC               REP LODS AL(E)
+F3 AD               REP LODS AX(E)
+F3 AD               REP LODS EAX(E)
+F3 AE               REPE SCAS m8
+F3 AF               REPE SCAS m16
+F3 AF               REPE SCAS m32
