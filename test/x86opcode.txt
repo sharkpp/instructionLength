@@ -469,6 +469,7 @@ A4                  MOVSB
 A5                  MOVSD
 A6                  CMPSB
 A7                  CMPSD
+A8 ib               TEST AL, imm8
 A9 id               TEST EAX, imm32
 AA                  STOS m8
 AB                  STOS m32
@@ -476,6 +477,22 @@ AC                  LODS m8
 AD                  LODS m32
 AE                  SCAS m8
 AF                  SCAS m32
+B0 ib               MOV r8, imm8
+B1 ib               MOV r8, imm8
+B2 ib               MOV r8, imm8
+B3 ib               MOV r8, imm8
+B4 ib               MOV r8, imm8
+B5 ib               MOV r8, imm8
+B6 ib               MOV r8, imm8
+B7 ib               MOV r8, imm8
+B8 id               MOV r32, imm32
+B9 id               MOV r32, imm32
+BA id               MOV r32, imm32
+BB id               MOV r32, imm32
+BC id               MOV r32, imm32
+BD id               MOV r32, imm32
+BE id               MOV r32, imm32
+BF id               MOV r32, imm32
 C0 /0 ib            ROL r/m8, imm8
 C0 /1 ib            ROR r/m8, imm8
 C0 /2 ib            RCL r/m8, imm8
@@ -1272,6 +1289,14 @@ FF /6               PUSH r/m32
 67 AB               STOS m16
 67 AD               LODS m16
 67 AF               SCAS m16
+67 B8 iw            MOV r16, imm16
+67 B9 iw            MOV r16, imm16
+67 BA iw            MOV r16, imm16
+67 BB iw            MOV r16, imm16
+67 BC iw            MOV r16, imm16
+67 BD iw            MOV r16, imm16
+67 BE iw            MOV r16, imm16
+67 BF iw            MOV r16, imm16
 67 C1 /0 ib         ROL r/m16, imm8
 67 C1 /1 ib         ROR r/m16, imm8
 67 C1 /2 ib         RCL r/m16, imm8
@@ -1318,7 +1343,8 @@ FF /6               PUSH r/m32
 67 FF /4            JMP r/m16
 67 FF /5            JMP m16:16
 67 FF /6            PUSH r/m16
-F0                  LOCK
+  F0                LOCK
+F0 00 00            LOCK+ADD
 F2 0F 10 /r         MOVSD xmm1,
 F2 0F 11 /r         MOVSD xmm2/m64, xmm
 F2 0F 2A /r         CVTSI2SD xmm, r/m32
