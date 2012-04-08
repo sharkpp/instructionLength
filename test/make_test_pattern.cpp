@@ -105,7 +105,6 @@ static void generateModRM(uint8_t modrm, const std::vector<uint8_t>& src, std::v
 static bool perse_line(const TCHAR* line, std::vector<uint8_t>& result)
 {
 	const TCHAR* p = line;
-	TCHAR tmp[128];
 	std::vector<std::vector<uint8_t> > buff(1);
 
 	if( !*line ) {
@@ -116,7 +115,6 @@ static bool perse_line(const TCHAR* line, std::vector<uint8_t>& result)
 	{
 		const TCHAR* pa = _tcschr(p, ' ');
 		size_t len = !pa ? strlen(p) : size_t(pa - p);
-		int byte_data = 0;
 
 		if(	!_tcsncicmp(p, "/0", len) || !_tcsncicmp(p, "/1", len) ||
 			!_tcsncicmp(p, "/2", len) || !_tcsncicmp(p, "/3", len) ||
